@@ -61,20 +61,20 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     df_caract["com"] = df_caract["com"].str.replace("2B", "202")
 
     #--Converting columns types
-#    df_caract[["dep","com", "hour"]] = df_caract[["dep","com", "hour"]].astype(int)
-#
-#    dico_to_float = { 'lat': float, 'long':float}
-#    df_caract["lat"] = df_caract["lat"].str.replace(',', '.')
-#    df_caract["long"] = df_caract["long"].str.replace(',', '.')
-#    df_caract = df_caract.astype(dico_to_float)
+    df_caract[["dep","com", "hour"]] = df_caract[["dep","com", "hour"]].astype(int)
+
+    dico_to_float = { 'lat': float, 'long':float}
+    df_caract["lat"] = df_caract["lat"].str.replace(',', '.')
+    df_caract["long"] = df_caract["long"].str.replace(',', '.')
+    df_caract = df_caract.astype(dico_to_float)
 
 
     #--Grouping modalities 
-#    dico = {1:0, 2:1, 3:1, 4:1, 5:1, 6:1,7:1, 8:0, 9:0}
-#    df_caract["atm"] = df_caract["atm"].replace(dico)
-#    catv_value = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,30,31,32,33,34,35,36,37,38,39,40,41,42,43,50,60,80,99]
-#    catv_value_new = [0,1,1,2,1,1,6,2,5,5,5,5,5,4,4,4,4,4,3,3,4,4,1,1,1,1,1,6,6,3,3,3,3,1,1,1,1,1,0,0]
-#    df_veh['catv'].replace(catv_value, catv_value_new, inplace = True)
+    dico = {1:0, 2:1, 3:1, 4:1, 5:1, 6:1,7:1, 8:0, 9:0}
+    df_caract["atm"] = df_caract["atm"].replace(dico)
+    catv_value = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,30,31,32,33,34,35,36,37,38,39,40,41,42,43,50,60,80,99]
+    catv_value_new = [0,1,1,2,1,1,6,2,5,5,5,5,5,4,4,4,4,4,3,3,4,4,1,1,1,1,1,6,6,3,3,3,3,1,1,1,1,1,0,0]
+    df_veh['catv'].replace(catv_value, catv_value_new, inplace = True)
 
     #--Merging datasets 
     fusion1= df_users.merge(df_veh, on = ["Num_Acc","num_veh", "id_vehicule"], how="inner")
@@ -84,10 +84,10 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     df = fusion2.merge(df_caract, on = 'Num_Acc', how="left")
 
     #--Adding new columns
-#    df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
-#    df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
-#    df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
-#    df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
+    df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
+    df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
+    df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
+    df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
 
     #--Modification of the target variable  : 1 : prioritary // 0 : non-prioritary
     df['grav'].replace([2,3,4], [0,1,1], inplace=True)
