@@ -100,13 +100,13 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     df[col_to_replace0_na] = df[col_to_replace0_na].replace(0, np.nan)
 
 
-#    #--Dropping columns 
-#    list_to_drop = ['senc','larrout','actp', 'manv', 'choc', 'nbv', 'prof', 'plan', 'Num_Acc', 'id_vehicule', 'num_veh', 'pr', 'pr1','voie', 'trajet',"secu2", "secu3",'adr', 'v1', 'lartpc','occutc','v2','vosp','locp','etatp', 'infra', 'obs' ]
-#    df.drop(list_to_drop, axis=1, inplace=True)
-#
-#    #--Dropping lines with NaN values
-#    col_to_drop_lines = ['catv', 'vma', 'secu1', 'obsm', 'atm']
-#    df = df.dropna(subset = col_to_drop_lines, axis=0)
+    #--Dropping columns 
+    list_to_drop = ['senc','larrout','actp', 'manv', 'choc', 'nbv', 'prof', 'plan', 'Num_Acc', 'id_vehicule', 'num_veh', 'pr', 'pr1','voie', 'trajet',"secu2", "secu3",'adr', 'v1', 'lartpc','occutc','v2','vosp','locp','etatp', 'infra', 'obs' ]
+    df.drop(list_to_drop, axis=1, inplace=True)
+
+    #--Dropping lines with NaN values
+    col_to_drop_lines = ['catv', 'vma', 'secu1', 'obsm', 'atm']
+    df = df.dropna(subset = col_to_drop_lines, axis=0)
 
 
     target = df['grav']
