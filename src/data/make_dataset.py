@@ -40,18 +40,18 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
 
 
         #--Creating new columns
-#    nb_victim = pd.crosstab(df_users.Num_Acc, "count").reset_index()
-#    nb_vehicules = pd.crosstab(df_veh.Num_Acc, "count").reset_index()
-#    df_users["year_acc"] = df_users["Num_Acc"].astype(str).apply(lambda x : x[:4]).astype(int)
-#    df_users["victim_age"] = df_users["year_acc"]-df_users["an_nais"]
-#    for i in df_users["victim_age"] :
-#        if (i>120)|(i<0):
-#            df_users["victim_age"].replace(i,np.nan)
-#    df_caract["hour"] = df_caract["hrmn"].astype(str).apply(lambda x : x[:-3])
-#    df_caract.drop(['hrmn', 'an'], inplace=True, axis=1)
-#    df_users.drop(['an_nais'], inplace=True, axis=1)
+    nb_victim = pd.crosstab(df_users.Num_Acc, "count").reset_index()
+    nb_vehicules = pd.crosstab(df_veh.Num_Acc, "count").reset_index()
+    df_users["year_acc"] = df_users["Num_Acc"].astype(str).apply(lambda x : x[:4]).astype(int)
+    df_users["victim_age"] = df_users["year_acc"]-df_users["an_nais"]
+    for i in df_users["victim_age"] :
+        if (i>120)|(i<0):
+            df_users["victim_age"].replace(i,np.nan)
+    df_caract["hour"] = df_caract["hrmn"].astype(str).apply(lambda x : x[:-3])
+    df_caract.drop(['hrmn', 'an'], inplace=True, axis=1)
+    df_users.drop(['an_nais'], inplace=True, axis=1)
 
-    #--Replacing names 
+        #--Replacing names 
 #    df_users.grav.replace([1,2,3,4], [1,3,4,2], inplace = True)
 #    df_caract.rename({"agg" : "agg_"},  inplace = True, axis = 1)
 #    corse_replace = {"2A":"201", "2B":"202"}
